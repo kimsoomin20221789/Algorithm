@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/kimsoomin/Desktop/김수민대학교/Algorithm/boj_solve/output/2293"
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D60, symSize: 0x230 }
+  - { offsetInCU: 0x3F, offset: 0x3F, size: 0x8, addend: 0x0, symName: _dp, symObjAddr: 0x5568, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x71, offset: 0x71, size: 0x8, addend: 0x0, symName: _isExisted, symObjAddr: 0x66FF4, symBinAddr: 0x100069A8C, symSize: 0x0 }
+  - { offsetInCU: 0x2C9F, offset: 0x2C9F, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D60, symSize: 0x230 }
+...
