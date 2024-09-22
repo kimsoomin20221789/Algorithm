@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int N; 
+int N;
 long oneDP[93];
 long zeroDP[93];
 

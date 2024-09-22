@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/kimsoomin/Desktop/김수민대학교/Algorithm/boj_solve/output/1182"
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: __Z9backTrackxx, symObjAddr: 0x0, symBinAddr: 0x100003DB0, symSize: 0xAC }
+  - { offsetInCU: 0x3F, offset: 0x3F, size: 0x8, addend: 0x0, symName: _N, symObjAddr: 0x12118, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x5B, offset: 0x5B, size: 0x8, addend: 0x0, symName: _S, symObjAddr: 0x12120, symBinAddr: 0x100008008, symSize: 0x0 }
+  - { offsetInCU: 0x77, offset: 0x77, size: 0x8, addend: 0x0, symName: _val, symObjAddr: 0x12128, symBinAddr: 0x100008010, symSize: 0x0 }
+  - { offsetInCU: 0x9F, offset: 0x9F, size: 0x8, addend: 0x0, symName: _ans, symObjAddr: 0x121E0, symBinAddr: 0x1000080C8, symSize: 0x0 }
+  - { offsetInCU: 0x684E, offset: 0x684E, size: 0x8, addend: 0x0, symName: __Z9backTrackxx, symObjAddr: 0x0, symBinAddr: 0x100003DB0, symSize: 0xAC }
+  - { offsetInCU: 0x6884, offset: 0x6884, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xAC, symBinAddr: 0x100003E5C, symSize: 0xE8 }
+  - { offsetInCU: 0x6962, offset: 0x6962, size: 0x8, addend: 0x0, symName: __ZNSt3__19basic_iosIcNS_11char_traitsIcEEE3tieB7v160006EPNS_13basic_ostreamIcS2_EE, symObjAddr: 0x194, symBinAddr: 0x100003F44, symSize: 0x2C }
+...
