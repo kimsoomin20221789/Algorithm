@@ -57,12 +57,6 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "iosfwd": "cpp",
-    "iostream": "cpp",
-    "queue": "cpp",
-    "ios": "cpp",
-    "vector": "cpp",
-    "set": "cpp",
-    "string": "cpp"
+    "ios": "cpp"
   }
 }

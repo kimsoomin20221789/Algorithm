@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/kimsoomin/Desktop/김수민대학교/Algorithm/icpcEx_boj",
+      "program": "/Users/kimsoomin/Desktop/김수민대학교/Algorithm/icpcEx_boj/build/Debug/outDebug"
+    }
+  ]
+}
