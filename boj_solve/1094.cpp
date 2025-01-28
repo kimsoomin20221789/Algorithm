@@ -15,14 +15,15 @@ int main() {
         }
         x = x / 2;
     }
+
     s.push_back('1');
     int ans = 0;
+
     for (auto i : s) {
         if (i == '1') {
             ans++;
         }
     }
+    
     cout << ans;
-
-
 }
