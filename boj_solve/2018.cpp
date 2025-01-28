@@ -1,33 +1,30 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-int main(){
-    ios_base::sync_with_stdio(false); 
-    cin.tie(NULL);
-    cout.tie(NULL);
-    // vector<int> v1;
-    int N;
-    cin >> N;
 
-    // for (int i=0; i<N; i++){
-    //     v1.push_back(i+1);
-    // }
-    int answer = 0;
-    int start = 1;
-    int end = 1;
-    int partSum = 0;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int N; cin >> N;
 
-    while (end <= N+1 && start <= N+1){
-        if (partSum <= N){
-            partSum += end++;
-        } else {
-            partSum -= start++;
-        }
+    int pointer1 = 0;
+    int pointer2 = 1;
 
-        if (partSum == N){
-            answer ++;
+    long long total = 1;
+    int cnt = 0;
+    while (!(pointer1 == N && pointer2 == N+1)) {
+        if (total < N) {
+            pointer2++;
+            total += pointer2;
+        } else if (total == N) {
+            // cout << pointer1 << pointer2;
+            cnt++; 
+            pointer2++;
+            total += pointer2;
+        } else { // total > N
+            total -= pointer1;
+            pointer1++;
         }
     }
-    cout << answer;
 
+    cout << cnt;
 }

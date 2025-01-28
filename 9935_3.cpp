@@ -16,7 +16,7 @@ void deleteExplosion() {
     for (char c : inputString) {
         checkedString += c;
         if (!isRightSize()) {continue;}
-        
+
         if (hasExplosion()) {
             checkedString.erase(checkedString.size() - explosionString.size());
         }

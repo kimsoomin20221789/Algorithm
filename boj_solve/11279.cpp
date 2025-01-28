@@ -1,10 +1,9 @@
-#include <iostream>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 
 
 int main(){
-    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    ios::sync_with_stdio(false); cin.tie(0);
     priority_queue<int> pq1;
     int N;
     cin >> N;
@@ -17,7 +16,6 @@ int main(){
             } else {
             cout << pq1.top() << "\n";
             pq1.pop();
-
             }
         } else {
             pq1.push(x);

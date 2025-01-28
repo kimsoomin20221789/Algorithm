@@ -44,7 +44,6 @@ int main() {
                     prevX = vp[i][vp[i].size()-1];
                     break;
             }
-            prevX = 0;
         }
 
         int m; cin >> m;
@@ -52,5 +51,6 @@ int main() {
             int a; cin >> a;
             cout << ans[a-1].first << " " << ans[a-1].second << "\n";
         }
+        prevX = 0;
     }
 }

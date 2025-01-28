@@ -1,69 +1,68 @@
 #include <bits/stdc++.h>
-#define X first
-#define Y second
 using namespace std;
-int n; //최대 1000
-int m; // 버스의 개수, 최대 100000
-vector<pair<int, int>>  val[1005];
-const int INF = 987654321;
+typedef pair<int, int> pii;
+typedef long long ll;
+#define LINF LLONG_MAX
+vector<pii> v[1003];
+int preVertex[1003];
+ll shortDistance[1003];
+priority_queue<pii, vector<pii>, greater<pii>> pq;
 
-int d[1005];
-int prior[1005];
-
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
-    cin >> n >> m;
-    fill(d, d+n+1, INF);
-    int ansX;
-    int ansY;
-    for (int i=0; i<m; i++) {
-        int a; int b; int c;
-        cin >> a >> b >> c;
-        val[a].push_back({c,b});
-    }
-    cin >> ansX >> ansY;
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>,
-    greater<pair<int, int>>> pq;
-
-    d[ansX] = 0;
-    pq.push({d[ansX], ansX});
-
+void daikstra(int start, int end) {
+    pq.push({0, start});
+    shortDistance[start] = 0;
     while (!pq.empty()) {
-        auto cur = pq.top(); pq.pop();
-        if (d[cur.Y] != cur.X) continue;
-        for (auto nxt : val[cur.Y]) {
-            // 새롭게 업데이트 시킨 값이 더 클 때 -> 기존 값 그대로!
-            if (d[nxt.Y] <= d[cur.Y] + nxt.X) continue;
-            // 새롭게 업데이트 시킨 값이 더 작을 때 => 업데이트!
-            d[nxt.Y] = d[cur.Y] + nxt.X;
-            prior[nxt.Y] = cur.Y;
-            // 우선순위큐에도 새로운 값들 넣어주기
-            pq.push({d[nxt.Y], nxt.Y});
+        auto currentSet = pq.top();
+        pq.pop();
+
+        int edge = currentSet.first;
+        int vertex = currentSet.second;
+        if (vertex == end) {
+            return;
+        }
+        if (shortDistance[vertex] != edge){
+            continue;
+        }
+         
+        for (auto i : v[vertex]) {
+            if (edge+i.second < shortDistance[i.first]) {
+                shortDistance[i.first] = edge + i.second;
+                pq.push({edge + i.second, i.first});
+                preVertex[i.first] = vertex;
+            }
         }
     }
-
-    cout << d[ansY] << "\n";
-    
-    int before = ansY;
-    vector<int> v;
-    while (true) {
-        if (before == 0 || before == INF)  {
-            break;
-        } else {
-            v.push_back(before);
-            before = prior[before];
-        }
+}
+int main() {
+    int n; int m; cin >> n >> m;
+    fill(shortDistance, shortDistance+n+1, LINF);
+    for (int i=0; i<m; i++) {
+        int a; int b; int c; cin >> a >> b >> c;
+        v[a].push_back({b, c});
     }
 
-    reverse(v.begin(), v.end());
+    int start; cin >> start;
+    int end; cin >> end;
 
-    cout << v.size() << "\n";
+    daikstra(start, end);
 
-    for (int i=0; i<v.size(); i++) {
-        cout << v[i] << " ";
-    }
+    cout << shortDistance[end] << "\n";
+
+    stack<int> ans;
     
+    int currentVertex = end;
+    
+    while (currentVertex != start) {
+        ans.push(currentVertex);
+        currentVertex = preVertex[currentVertex];
+    }
+
+    ans.push(start);
+
+    cout << ans.size() << "\n";
+
+    while (!ans.empty()) {
+        cout << ans.top() << " ";
+        ans.pop();
+    }
 }

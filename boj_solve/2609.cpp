@@ -1,15 +1,15 @@
 #include <iostream>
-using namespace std;
-int gcd(int a, int b) {
-	if(b == 0) return a;
-	return gcd(b, a%b);
-}
-long long lcm (int a, int b) {
-	return a/gcd(a, b) * b;
-}
-int main(){
-    int a; int b;
-    cin >> a >> b;
-    cout << gcd(a, b) << "\n";
-    cout << lcm(a, b);
+#include <numeric>
+
+int main() {
+    int a = 12;
+    int b = 18;
+
+    int gcd_result = std::gcd(a, b);
+    int lcm_result = std::lcm(a, b);
+
+    std::cout << "GCD of " << a << " and " << b << " is " << gcd_result << std::endl;
+    std::cout << "LCM of " << a << " and " << b << " is " << lcm_result << std::endl;
+
+    return 0;
 }
