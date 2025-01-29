@@ -7,31 +7,27 @@ int main() {
 
     int N; int P; cin >> N >> P;
 
-    priority_queue<pii> pq;
+    priority_queue<int> pq[300003];
     long long cnt = 0;
     for (int i=0; i<N; i++) {
         int a; int b; cin >> a >> b;
         int isInLoop = true;
-        int isPop = false;
         while (isInLoop) { 
-            if (pq.empty()) {
+            if (pq[a].empty()) {
                 cnt++;
-                pq.push({a, b});
+                pq[a].push(b);
                 isInLoop = false;
             } else {
-                auto x = pq.top();
-                if (x.first ==  a && x.second == b) {
+                auto x = pq[a].top();
+                if (x == b) {
                     isInLoop = false;
-                } else if ((x.first < a) || (x.first == a && x.second <= b)) {
+                } else if ( x < b) {
                     cnt++;
-                    pq.push({a, b});
+                    pq[a].push(b);
                     isInLoop = false;
                 } else {
-                    if (!isPop) {
-                        cnt++;
-                        isPop = true;
-                    }
-                    pq.pop();
+                    cnt++;
+                    pq[a].pop();
                 }
             }
         }
