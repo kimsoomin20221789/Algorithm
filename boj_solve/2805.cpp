@@ -1,21 +1,50 @@
-//최적화문제 (절단기의 높이를 최대로!)
+#include <bits/stdc++.h>
+using namespace std;
 
-//전부하기엔 너무 많음 => parameter research
-//그래프 증감 형태 살피기
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
 
-//0~10억의 중간값 f(5억) = 0
-//f(2.5억) = 0 .....
-//m : 0~25 f(12) = 16
-//m : 12~25 f(mid) = 2
-// ... f(mid) = 7
-//관점은 이부분!!!! 같은게 나왔을때 왼쪽을 볼건지
-//오른쪽을 볼건지..(최적화 문제) 
-//이문제는 왼쪽을 봐야됨
+    int N; int M; cin >> N >> M;
 
-#include <iostream>
-#include <vector>
-//코드는 mosu의 notion에 있음
-//low랑 high를 설정할때 하나는 정답범위 안에, 하나는 정답범위 바깥에 해놓은게 좋다
-//뭐를 더 정답범위보다 크게 잡냐에따라 어디를땡길지가 달라진다...?
-//ucpc에도 나옴....최적화문제 
-//그리디, dp 등 배열이 아니라 다른걸 넣올수도 이씀.....
+    vector<long long> v;
+    while(N--) {
+        long long x; cin >> x;
+        v.push_back(x);
+    }
+
+    sort(v.begin(), v.end());
+
+    long long target = M;
+
+    int st = 0;
+    int end = v[v.size()-1];
+    int answer = 0;
+    while (st<=end) {
+        int pivot = (st + end) / 2 ;
+        int pivot1 = pivot+1;
+
+        long long pivotSum = 0;
+        long long pivot1Sum = 0;
+
+        for (auto i : v) {
+            if (i - pivot > 0) {
+                pivotSum += i-pivot;
+            }
+
+            if (i - pivot1 > 0) {
+                pivot1Sum += i-pivot1;
+            }
+        }
+
+        if (pivotSum >= target && pivot1Sum < target) {
+            answer = pivot;
+            break;
+        } else if (pivotSum >= target && pivot1Sum >= target) {
+            st = pivot;
+        } else {
+            end = pivot;
+        }
+    }
+    cout << answer;
+}
