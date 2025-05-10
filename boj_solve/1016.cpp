@@ -19,6 +19,9 @@ int main() {
         // min_val 이상이면서 square로 나누어떨어지는 최소 시작값
         ll start = ((min_val - 1) / square + 1) * square;
 
+        if (isSquareMultiple[start-min_val]) {
+            continue;    
+        }
         // start부터 max_val 이하까지 square씩 증가
         for (ll j = start; j <= max_val; j += square) {
             isSquareMultiple[j - min_val] = true;

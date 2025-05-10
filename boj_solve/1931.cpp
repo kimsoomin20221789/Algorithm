@@ -1,35 +1,37 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
-struct Point {
-    int x, y;
-    Point(int x1, int y1): x(x1), y(y1) {}
-};
-
-bool comp(Point a, Point b){
-    return a.y < b.y;
+bool comp(pair<int, int> a, pair<int, int> b) {
+    if (a.second != b.second) {
+        return a.second < b.second;
+    } else {
+        return a.first < b.first;
+    }
 }
 
-int main(){
-    vector<Point> v1;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
     int N; cin >> N;
-    int a[N];
-    int b[N];
+    vector<pair<int, int>> v;
 
-    for (int i=0; i<N; i++){
-        int first; int second; cin >> first >> second;
-        v1.push_back(Point(first, second));
+    while (N--) {
+        int a; int b; cin >> a >> b;
+        v.push_back({a,b});
     }
 
-    sort(v1.begin(), v1.end(), comp);
-    for (int i=0; i<v1.size(); i++){
-        if (v1[i].y > v1[i+1].x){
-            v1.erase(v1.begin()+i+1);
-            
+    sort(v.begin(), v.end(), comp);
+
+    int passVal = -1;
+    int ans = 0;
+
+    for (int i=0; i<v.size(); i++) {
+        if (v[i].first < passVal) {
+            continue;
         }
+        ans++;
+        passVal = v[i].second;
     }
-
-    cout << v1.size();
+    
+    cout << ans;
 }

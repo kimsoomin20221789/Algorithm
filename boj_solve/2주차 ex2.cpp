@@ -1,27 +1,47 @@
-//2분탐색
-//전제 조건 : 정렬이 돼있어야됨
-//upperbound , lowerbound (갯수 찾고싶을때 = 밑에 코드)
-// while(M--){
-//     int a; cin>>a;
-//     auto it1 = lower_bound(v.begin(), v.end(),a);
-//     auto it2 = upper_bount(v.begin(), v.end(), a);
-//     cout << it2 - it1 << endl;
-// }
-
-
-#include <iostream>
+#include <string>
 #include <vector>
-#include <algorithm>
+#include <iostream>
+#define ll long long
 using namespace std;
+// 0:+ , 1:- , 2:x , 3:/ , 4:십일
+vector<ll> dp[8];
 
-vector <int> v;
-int main(){
-    ios::sync_with_stdio(0); cin.tie(0);
-    int N; cin >> N;
-    for (int i =0; i<N; i++){
-        int a; cin>>a; v.push_back(a);
+ll cal(ll x, ll y, int calculatorNum) {
+    switch (calculatorNum) {
+        case 0 :
+            return x+y;
+        case 1:
+            return x-y;
+        case 2:
+            return x*y;
+        case 3:
+            return x/y;
+        default:
+            return 10*x + y;
     }
-    sort(v.begin(), v.end());
-    int M; cin >> M;
-    bool binary_search()
+}
+
+int solution(int N, int number) {
+    int answer = 0;
+    return answer;
+    
+    dp[0].push_back(N);
+    
+    for (int i=1; i<=8; i++) {
+        if (i==8) {
+            cout << -1;
+            // return -1;
+        }
+        for (auto x : dp[i-1]) {
+            for (int j = 0; j<=4; j++) {
+                ll ans = cal(x, N, j);
+                if (ans == number) {
+                    cout << i;
+                    // return i;
+                }
+                dp[i].push_back(ans);
+            }
+            
+        }
+    }
 }

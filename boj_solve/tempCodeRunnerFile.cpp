@@ -1,40 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef pair<int, int> pii;
+
 int main() {
     ios::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+    cin.tie(0);
+    int arr[50];
+    for (int i=0; i<50; i++) {
+        cin >> arr[i];
+    }
 
-    int N; int P; cin >> N >> P;
-
-    priority_queue<pii> pq;
-    long long cnt = 0;
-    for (int i=0; i<N; i++) {
-        int a; int b; cin >> a >> b;
-        int isInLoop = true;
-        int isPop = false;
-        while (isInLoop) { 
-            if (pq.empty()) {
-                cnt++;
-                pq.push({a, b});
-                isInLoop = false;
-            } else {
-                auto x = pq.top();
-                if (x.first ==  a && x.second == b) {
-                    isInLoop = false;
-                } else if ((x.first < a) || (x.first == a && x.second <= b)) {
-                    cnt++;
-                    pq.push({a, b});
-                    isInLoop = false;
-                } else {
-                    if (!isPop) {
-                        cnt++;
-                        isPop = true;
-                    }
-                    pq.pop();
-                }
-            }
+    int hongik; cin >> hongik;
+    int answer = 0;
+    for (int i=0; i<50; i++) {
+        if (arr[i] < hongik) {
+            answer = i+1;
+            break;
         }
     }
-    cout << cnt;
+
+    if (answer <=5) {
+        cout << "A+";
+    } else if (answer <=15) {
+        cout << "A0";
+    } else if (answer <=30) {
+        cout << "B+";
+    } else if (answer <= 35) {
+        cout << "B0";
+    } else if (answer <= 45) {
+        cout << "C+";
+    } else if (answer <= 48) {
+        cout << "C0";
+    } else {
+        cout << "F";
+    }
 }

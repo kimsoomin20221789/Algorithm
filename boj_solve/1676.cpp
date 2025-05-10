@@ -1,37 +1,28 @@
 #include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-int twoCnt;
-int fiveCnt;
+vector<int> arr;
+vector<int> answer;  // 현재 조합을 저장할 벡터
 
-void cnt(int x) {
-    while (true) {
-        if (x % 2 == 0) {
-            x /= 2;
-            twoCnt++;
-        } else {
-            break;
+void combination(int total, int cnt, int cur) {
+    if (cnt == total) {
+        for (auto i : answer) {
+            cout << i; 
         }
-    }
 
-    while (true) {
-        if (x % 5 == 0) {
-            x /= 5;
-            fiveCnt++;
-        } else {
-            break;
-        }
+        cout << "\n";
+        return;
     }
+    if (cur >= arr.size()) return;  
+    // o일때
+    answer.push_back(arr[cur]);
+    combination(total, cnt+1, cur+1);
+    answer.pop_back();
+    //x일때
+    combination(total, cnt, cur+1);
 }
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int N; cin >> N;
-
-    // 25 , 125, 
-
-    for (int i=1; i<=N; i++) {
-        cnt(i);
-    }
-
-    cout << min(twoCnt, fiveCnt);
+    arr = {1, 2, 3, 4};  // 조합을 구하고자 하는 배열
+    int r = 2;  // 조합의 크기
+    combination(r,0, 0);
 }

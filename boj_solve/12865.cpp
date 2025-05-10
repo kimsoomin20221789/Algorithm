@@ -1,33 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                      :::    :::    :::     */
+/*   Problem Number: 12865                             :+:    :+:      :+:    */
+/*                                                    +:+    +:+        +:+   */
+/*   By: lucy1382 <boj.kr/u/lucy1382>                +#+    +#+          +#+  */
+/*                                                  +#+      +#+        +#+   */
+/*   https://boj.kr/12865                          #+#        #+#      #+#    */
+/*   Solved: 2025/05/08 16:20:10 by lucy1382      ###          ###   ##.kr    */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <bits/stdc++.h>
 using namespace std;
+pair<int, int> val[103];
 
-int main(){
-    int n; int k; cin>>n; cin>>k;
-    int w[n];
-    int v[k];
-    int T[n][k+1];
-    for (int i=0; i<n; i++){
-        cin >> w[i];
-        cin >> v[i];
+int dp[103][100003];
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    int N; int K; cin >> N >> K;
+
+    for (int i=0; i<N; i++) {
+        int a; int b; cin >> a >> b;
+        val[i] = {a,b};
     }
 
-    for (int j=0; j<k+1; j++){
-        if (w[0] > j){
-            T[0][j] = 0;
-        } else {
-            T[0][j] = v[0];
+    for (int i = 0; i < N; i++) {
+        for (int j=0; j<=K; j++) {
+            dp[i][j] = max(dp[i-1][j], dp[i-val[i].first][j] + val[i].second);
         }
     }
+    
 
-
-    for (int i=1; i<n; i++){
-        for (int j=0; j<k+1; j++){
-            if (w[i] > j){
-                T[i][j] = T[i-1][j];
-            } else {
-                T[i][j] = max(T[i-1][j], v[i] + T[i-1][j-w[i]]);
-            }
-        }
-    }
-    cout << T[n-1][k];
+    cout << dp[N-1][K];
 }
